@@ -1,0 +1,30 @@
+<div class="card">
+    <div class="card-body">
+        <form [formGroup]="userForm">
+            <div class="mb-3">
+              <label for="firstName" class="form-label"> {{'name' | translate}}</label>
+              <input type="firstName" formControlName="firstName" id="firstName" [placeholder]="'enterName' | translate">
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label"> {{'email' | translate}}</label>
+              <input type="email" formControlName="email" id="name" [placeholder]="'enterEmail'|translate">
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">{{'users.password' | translate}}</label>
+                <div class="password-input">
+                    <input formControlName="password" [type]="showPassword?'text':'password'" placeholder="" name="password">
+                    <i *ngIf="!showPassword" (click)="showPassword = true" class="fa-thin fa-eye"></i>
+                    <i *ngIf="showPassword" (click)="showPassword = false" class="fa-thin fa-eye-slash"></i>
+                </div>
+            </div>
+            @if (updateMode) {
+              <button type="button" (click)="updateUser()" class="primary-button">{{'users.updateUser' | translate}}</button>
+              <button (click)="deleteUser()" class="primary-button small danger"  style="float: right;">{{'users.deleteUser' | translate}}</button>
+            }
+            @else {
+              <button type="button" (click)="addUser()" class="primary-button">{{'users.addUser' | translate}} </button>
+    
+            }
+          </form>
+    </div>
+</div>

@@ -1,0 +1,23 @@
+@use '../../../../scss/index' as *;
+@import "~jsoneditor/dist/jsoneditor.min.css";
+
+
+.jsoneditor {
+    height: 500px;
+    border: 1px solid gainsboro;
+    border-radius: 5px;
+
+}
+.jsoneditor-menu {
+    background-color: $primary-color;
+    border-bottom: 0px;
+}
+.jsoneditor-poweredBy {
+    display: none;
+}
+.p-button {
+    padding: .3em 1em !important;
+    border-radius: 6px;
+    font-size: .95rem;
+    font-family: $font-roboto-regular;
+}

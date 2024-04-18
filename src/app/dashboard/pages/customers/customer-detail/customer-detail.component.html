@@ -1,0 +1,92 @@
+    
+    <div class="d-flex align-items-center flex-row-reverse gap-2 mb-3">
+        <button class="primary-button danger">
+            <i class="fa-solid fa-ban"></i> {{"customers.blockUser" | translate}}</button>
+    </div>
+    <div class="row">
+      <!-- Genel Bilgiler -->
+      <div class="col-md-6 mb-2">
+        <div class="card">
+          <div class="card-header">
+            {{"customers.generalInformation" | translate}}
+          </div>
+          <div class="card-body">
+            <p><strong>{{"name" | translate}}:</strong> {{ customer.name ? customer.name : '-' }}</p>
+            <p><strong>{{"email" | translate}}:</strong> {{ customer.email }}</p>
+            <p><strong>{{"phone" | translate}}:</strong> {{ customer.phone }}</p>
+            <p><strong style="margin-right: .3em;">{{"status" | translate}} </strong> <p-tag [value]="customer.isActive?('active' | translate):('deactive' | translate)" [severity]="getSeverityCustomerStatus(customer.isActive)"></p-tag>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Adres Bilgileri -->
+      <div class="col-md-6 mb-2">
+        <div class="card" >
+          <div class="card-header">
+            {{"customers.addressInformation" | translate}}
+          </div>
+          <div class="card-body">
+            <p><strong>{{"customers.addressLine" | translate}}:</strong> {{ customer.address.additionalInfo }}</p>
+            <p><strong>{{"customers.street" | translate}}:</strong> {{ customer.address.street }}</p>
+            <p><strong>{{"customers.city" | translate}}:</strong> {{ customer.address.city }}</p>
+            <p><strong>{{"customers.state" | translate}}:</strong> {{ customer.address.state }}</p>
+            <p><strong>{{"customers.country" | translate}}:</strong> {{ customer.address.country }}</p>
+            <p><strong>{{"customers.postalCode" | translate}}:</strong> {{ customer.address.postalCode }}</p>
+            <p><strong>{{"phone" | translate}}:</strong> {{ customer.address.phoneNumber }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+<!-- Son Siparişler -->
+<div class="row">
+    <div class="col-md-12 mb-3">
+      <div class="card">
+        <div class="card-header">
+          {{"customers.recentOrders" | translate}}
+        </div>
+        <div class="card-body">
+          <p-table [value]="recentOrders" [rows]="5" [rowHover]="true" [paginator]="true" [rowsPerPageOptions]="[5, 10, 20]">
+            <ng-template pTemplate="header">
+              <tr>
+                <th>{{"customers.orderId" | translate}}</th>
+                <th>{{"customers.date" | translate}}</th>
+                <th>{{"customers.totalAmount" | translate}}</th>
+                <th>{{"status" | translate}}</th>
+                <th></th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-order>
+              <tr>
+                <td>{{ order.id }}</td>
+                <td>{{ order.date | date }}</td>
+                <td>{{ order.totalAmount | currency:'USD' }}</td>
+                <td><p-tag [value]="order.status" [severity]="getSeverity(order.status)"></p-tag></td>
+                <td>
+                    <p-button [label]="'customers.viewOrder' | translate" [routerLink]="'/OrderDetails/'+order.id" [raised]="true"></p-button>
+
+                </td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+    <!-- Ek Bilgiler -->
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card mb-3">
+          <div class="card-header">
+            {{"customers.additionalInformation" | translate}}
+          </div>
+          <div class="card-body">
+            <p><strong>{{"customers.memberSince" | translate}}:</strong> {{ customer.memberSince | date }}</p>
+            <p><strong>{{"customers.lastLogin" | translate}}:</strong> {{ customer.lastLogin | date }}</p>
+            <p><strong>{{"customers.role" | translate}}:</strong> {{ customer.role }}</p>
+            <!-- Diğer ek bilgiler -->
+          </div>
+        </div>
+      </div>
+    </div>

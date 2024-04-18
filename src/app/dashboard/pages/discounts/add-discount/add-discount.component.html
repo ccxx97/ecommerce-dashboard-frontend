@@ -1,0 +1,39 @@
+<div class="card">
+    <div class="card-body">
+      <form [formGroup]="discountForm" (submit)="createDiscount()">
+        <div class="mb-3">
+          <label for="discountCode"  class="form-label">{{"discount.discountCode" | translate}}</label>
+          <input type="text"  id="discountCode" formControlName="discountCode" [placeholder]="'discount.enterDiscountCode' | translate">
+        </div>
+        <div class="mb-3">
+          <label for="discountAmount" class="form-label">{{"discount.discountAmount" | translate}}</label>
+          <input type="number"  id="discountAmount" formControlName="discountAmount" [placeholder]="'discount.enterDiscountAmount' | translate">
+        </div>
+        <div class="mb-3">
+          <label for="minPurchaseAmount" class="form-label">{{"discount.minPurchaseAmount" | translate}}</label>
+          <input type="number"  id="discountAmount" formControlName="minPurchaseAmount" [placeholder]="'discount.enterMinPurchaseAmount' | translate">
+        </div>
+        <div class="mb-3">
+          <label for="startDate" class="form-label">{{"discount.startDate" | translate}}</label>
+          <input type="date"  id="startDate" formControlName="startDate">
+        </div>
+        <div class="mb-3">
+          <label for="endDate" class="form-label">{{"discount.endDate" | translate}}</label>
+          <input type="date" id="endDate" formControlName="endDate">
+        </div>
+        <label class="form-label">{{"status" | translate}}</label>
+        <select class="mb-3" name="" id="" formControlName="isActive">
+          <option [ngValue]="true">{{"active" | translate}}</option>
+          <option [ngValue]="false">{{"deactive" | translate}}</option>
+        </select>
+        @if (updateMode) {
+          <button type="submit" class="primary-button">{{"discount.updateDiscount" | translate}}</button>
+          <button (click)="deleteDiscount()" class="primary-button small danger" style="float: right;">{{"discount.deleteDiscount" | translate}}</button>
+        }
+        @else {
+          <button type="submit" class="primary-button">{{"discount.addDiscount" | translate}}</button>
+
+        }
+      </form>
+    </div>
+  </div>

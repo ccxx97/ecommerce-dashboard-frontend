@@ -1,0 +1,30 @@
+<div class="header">
+    <span class="mobile-menu-button" (click)="openMenu()">
+      <i class="fa-thin fa-grid"></i>
+    </span>
+
+    <div class="right-align">
+      <div class="language">
+        <select #language [(ngModel)]="selectedLanguage" (change)="onChange(language.value)">
+          <option *ngFor="let lang of translateService.getLangs()" [value]="lang">{{
+              lang | uppercase
+          }}</option>
+      </select>
+      
+      </div>
+      <div class="dropdown account">
+          <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
+            <img  width="32" height="32" class="rounded-circle me-2" [src]="_userService.getCurrentUser().profileImage?'http://localhost:3000/public/images/'+_userService.getCurrentUser().profileImage:'../../../../../assets/img/avatar.jpg'"    alt="">
+
+            <strong>{{_userService.getCurrentUser().email}}</strong>
+          </a>
+          <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
+            <li><a class="dropdown-item" routerLink="Profile">{{'header.profile' | translate}}</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" (click)="logout()">{{'header.logout' | translate}}</a></li>
+          </ul>
+        </div>
+    </div>
+
+      <hr>
+</div>

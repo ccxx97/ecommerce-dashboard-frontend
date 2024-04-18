@@ -1,0 +1,29 @@
+<div class="card">
+    <div class="card-body">
+        <form [formGroup]="languageForm">
+            <div class="mb-3">
+              <label for="languageName" class="form-label">{{"languages.languageName" | translate}}</label>
+              <input type="text" formControlName="name" id="languageName" [placeholder]="'languages.enterLanguageName' | translate">
+            </div>
+            <div class="mb-3">
+              <label for="languageCode" class="form-label">{{"languages.languageCode" | translate}}</label>
+              <input type="text" formControlName="code" [readOnly]="updateMode" id="languageCode" [placeholder]="'languages.enterLanguageCode' | translate">
+            </div>
+            <div class="mb-3">
+              <label for="languageCode" class="form-label">{{"languages.defaultLanguage" | translate}}</label>
+              <select name="" id="" formControlName="isDefault">
+                <option [ngValue]="true">{{"languages.defaultLanguage.true" | translate}}</option>
+                <option [ngValue]="false">{{"languages.defaultLanguage.false" | translate}}</option>
+              </select>
+            </div>
+            @if (updateMode) {
+              <button type="button" (click)="updateLanguage()" class="primary-button">{{"languages.updateLanguage" | translate}}</button>
+              <button (click)="!languageForm.controls.isDefault.value?deleteLanguage():null" [disabled]="languageForm.controls.isDefault.value" class="primary-button small danger" [title]="languageForm.controls.isDefault.value?('languages.defaultLanguageErrorMessage' | translate):''"  style="float: right;">{{"languages.deleteLanguage" | translate}}</button>
+            }
+            @else {
+              <button type="button" (click)="addLanguage()" class="primary-button">{{"languages.addLanguage" | translate}}</button>
+    
+            }
+          </form>
+    </div>
+</div>

@@ -1,0 +1,20 @@
+@use '../../../../../scss/index' as *;
+
+.card-header {
+    background-color: transparent;
+    font-family: $font-roboto-bold;
+    padding: 1.2em;
+}
+.col {
+    margin: 2em !important;
+}
+.card {
+    height: 100%;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
+}
+.p-button {
+    padding: .3em 1em !important;
+    border-radius: 6px;
+    font-size: .95rem;
+    font-family: $font-roboto-regular;
+}

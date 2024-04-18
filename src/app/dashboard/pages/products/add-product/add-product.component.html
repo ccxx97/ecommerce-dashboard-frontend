@@ -1,0 +1,45 @@
+
+<p-tabView>
+    <p-tabPanel [header]="'products.addProduct.productDetails' | translate">
+        <div  class="card p-2 gap-2" [formGroup]="addProductForm">
+            <label for="">{{"products.addproduct.productName" | translate}}</label>
+            <input type="text" formControlName="title" />
+            <label for="">{{"products.addproduct.productDescription" | translate}}</label>
+            <ckeditor [editor]="Editor" formControlName="description" data=""></ckeditor>
+            <label for="">{{"products.addproduct.productPrice" | translate}}</label>
+            <input type="number" formControlName="price">
+            <label for="">{{"products.addproduct.productDiscountPrice" | translate}}</label>
+            <input type="number" formControlName="discountedPrice">
+            <label for="">{{"products.addproduct.productStock" | translate}}</label>
+            <input type="number" formControlName="stock">
+            <label for="">{{"products.addproduct.productStatus" | translate}}</label>
+            <select formControlName="isActive">
+                <option [ngValue]="true">{{"active" | translate}}</option>
+                <option [ngValue]="false">{{"deactive" | translate}}</option>
+            </select>
+            <button (click)="addProduct(addProductForm.value)" class="primary-button mt-4  save-button" >
+                <i class="fa-solid fa-floppy-disk"></i>
+                {{"products.addproduct.saveProduct" | translate}}
+            </button>
+        </div>
+    </p-tabPanel>
+    <p-tabPanel [header]="'products.addProduct.productImages' | translate">
+        <div class="card p-2">
+
+            <p-fileUpload name="images[]"  #fileUpload [mode]="'advanced'" [chooseLabel]="'products.addproduct.selectImage' | translate"   label [customUpload]="true"  (uploadHandler)="onUpload($event)"  [multiple]="true" accept="image/*" [maxFileSize]="1000000">
+                <ng-template pTemplate="content">
+                    <ul *ngIf="uploadedFiles.length">
+                        <li *ngFor="let file of uploadedFiles">{{ file.name }} - {{ file.size }} bytes</li>
+                    </ul>
+                </ng-template>
+            </p-fileUpload>
+
+
+        </div>
+    </p-tabPanel>
+    <p-tabPanel [header]="'products.addProduct.seo' | translate" [disabled]="true"></p-tabPanel>
+
+
+  </p-tabView>
+
+

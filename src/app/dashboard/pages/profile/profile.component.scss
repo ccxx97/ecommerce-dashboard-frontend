@@ -1,0 +1,22 @@
+.card {
+    max-height: auto;
+    height: 100%;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
+}
+.change-password {
+    max-width: 300px;
+    padding: 0;
+    * {
+        margin: .3em 0;
+    }
+    button {
+        width: 100%;
+    }
+}
+.profile-img {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    border: 1px solid gainsboro;
+    object-fit: cover;
+}

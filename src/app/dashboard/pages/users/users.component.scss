@@ -1,0 +1,8 @@
+@use '../../../../scss/index' as *;
+
+.p-button {
+    padding: .3em 1em !important;
+    border-radius: 6px;
+    font-size: .95rem;
+    font-family: $font-roboto-regular;
+}

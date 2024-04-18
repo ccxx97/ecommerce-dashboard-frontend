@@ -1,0 +1,54 @@
+@use '../../../scss/index' as *;
+
+.card-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(176deg, #81FBB8, #087338);
+    height: 100vh;
+
+    .login-card {
+        margin-top: 2em;
+        max-width: 500px;
+        background-color: #ffff;
+        height: 500px;
+        width: 100%;
+        border-radius: 10px;
+        padding: 1em;
+        box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+
+        @media (width<=600px) {
+            margin: 0 1em;
+        }
+
+        .form {
+            display: flex;
+            flex-direction: column;
+            -ms-flex-direction: column;
+            align-items: center;
+            gap: .3em;
+
+            .form-group {
+                width: 100%;
+                margin-bottom: 1em;
+
+                label {
+                    font-family: $font-roboto-bold;
+                }
+            }
+
+            button {
+                width: 50%;
+            }
+
+        }
+
+        .title {
+            .bold {
+                font-family: $font-roboto-bold;
+                font-size: 1.6rem;
+            }
+
+        }
+    }
+}

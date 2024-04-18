@@ -1,0 +1,26 @@
+<div class="card">
+    <div class="card-body">
+        <form [formGroup]="currencyForm">
+            <div class="mb-3">
+              <label for="name" class="form-label"> {{"name" | translate}}</label>
+              <input type="text" formControlName="name" id="name" [placeholder]="'enterName' | translate">
+            </div>
+            <div class="mb-3">
+              <label for="code" class="form-label">{{"code" | translate}}</label>
+              <input type="text" formControlName="code" [readOnly]="updateMode" id="code" [placeholder]="'currency.enterCurrencyCode' | translate">
+            </div>
+            <div class="mb-3">
+              <label for="symbol" class="form-label">{{"symbol" | translate}}</label>
+              <input type="text" formControlName="symbol"  id="symbol" [placeholder]="'currency.enterCurrencySymbol' | translate">
+            </div>
+            @if (updateMode) {
+              <button type="button" (click)="updateCurrency()" class="primary-button">{{'currency.updateCurrency' | translate}}</button>
+              <button (click)="deleteCurrency()" class="primary-button small danger"  style="float: right;">{{'currency.deleteCurrency' | translate}} </button>
+            }
+            @else {
+              <button type="button" (click)="addCurrency()" class="primary-button">{{'currency.addCurrency' | translate}}</button>
+    
+            }
+          </form>
+    </div>
+</div>

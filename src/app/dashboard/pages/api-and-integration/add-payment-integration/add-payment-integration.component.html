@@ -1,0 +1,21 @@
+<div class="card">
+    <form (submit)="addIntegration()">
+        <div class="mb-3">
+          <label for="integrationName" class="form-label">{{"apiAndIntegration.integrationName" | translate}}</label>
+          <input type="text"  id="integrationName" [(ngModel)]="newIntegration.name" name="integrationName" required>
+        </div>
+        <div class="mb-3">
+          <label for="apiKey" class="form-label">{{"apiAndIntegration.apiKey" | translate}}</label>
+          <input type="text"  id="apiKey" [(ngModel)]="newIntegration.apiKey" name="apiKey" required>
+        </div>
+        <div class="mb-3">
+          <label for="secretKey" class="form-label">{{"apiAndIntegration.secretKey" | translate}}</label>
+          <input type="text"  id="secretKey" [(ngModel)]="newIntegration.secretKey" name="secretKey" required>
+        </div>
+        <div class="mb-3 form-check">
+          <input type="checkbox" class="form-check-input" id="isActive" [(ngModel)]="newIntegration.isActive" name="isActive">
+          <label class="form-check-label" for="isActive">{{"active" | translate}}</label>
+        </div>
+        <button type="submit" class="primary-button">{{"apiAndIntegration.addIntegration" | translate}}</button>
+      </form>
+    </div>

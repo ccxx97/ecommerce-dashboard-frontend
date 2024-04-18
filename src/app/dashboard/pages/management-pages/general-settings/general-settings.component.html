@@ -1,0 +1,33 @@
+<div class="card">
+    <div class="card-body">
+      <form [formGroup]="siteSettingsForm">
+        <div class="form-group">
+          <label for="siteTitle">{{"generalSettings.siteTile" | translate}}</label>
+          <input type="text" id="siteTitle" formControlName="siteTitle" >
+        </div>
+        <div class="form-group mt-2">
+          <label for="siteDescription">{{"generalSettings.siteDescription" | translate}}</label>
+          <textarea style="height: 140px;" formControlName="siteDescription" id="siteDescription"></textarea>
+        </div>
+        <div class="d-flex flex-column gap-2 mt-3">
+          <label for="siteLogo">{{"generalSettings.siteLogo" | translate}}</label>
+          <img [src]="siteSettingsForm.controls.siteLogoUrl.value?'http://localhost:3000/public/images/'+siteSettingsForm.controls.siteLogoUrl.value:'https://placehold.co/120'" width="120"  lass="img-thumbnail" alt="...">
+          <div class="file-upload-button" >
+            <label class="btn btn-primary select-image-button" for="selectImageInput">
+                <i class="fa-solid fa-cloud-arrow-up"></i> {{"browse" | translate}}</label>
+            <input type="file" hidden (change)="onBasicUploadAuto($event,'logo')"  id="selectImageInput">
+        </div>
+        </div>
+        <div class=" d-flex flex-column gap-2 mt-3">
+          <label for="siteLogo">{{"generalSettings.siteFavicon" | translate}}</label>
+          <img [src]="siteSettingsForm.controls.siteFaviconUrl.value?'http://localhost:3000/public/images/'+siteSettingsForm.controls.siteFaviconUrl.value:'https://placehold.co/120'" width="120"  lass="img-thumbnail" alt="...">
+          <div class="file-upload-button" >
+            <label class="btn btn-primary select-image-button" for="selectImageInputFavicon">
+                <i class="fa-solid fa-cloud-arrow-up"></i> {{"browse" | translate}}</label>
+            <input type="file" hidden (change)="onBasicUploadAuto($event,'favicon')"  id="selectImageInputFavicon">
+        </div>
+        </div>
+        <button type="button" class="primary-button mt-3" (click)="updateSiteSettings()">{{"saveChanges" | translate}}</button>
+      </form>
+    </div>
+  </div>

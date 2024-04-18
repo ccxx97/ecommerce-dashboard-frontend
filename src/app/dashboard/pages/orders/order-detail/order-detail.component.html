@@ -1,0 +1,58 @@
+<div class="row mb-3">
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-header">
+        {{"orders.customerInformation" | translate}}
+      </div>
+      <div class="card-body">
+        <p><strong>{{"name" | translate}}:</strong> {{ order.customerName }}</p>
+        <p><strong>{{"email" | translate}}:</strong> {{ order.customerEmail }}</p>
+        <p><strong>{{"phone" | translate}}:</strong> {{ order.customerPhone }}</p>
+        <p><strong>{{"address" | translate}}:</strong> {{ order.customerAddress }}</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-header">
+        {{"orders.orderActions" | translate}}
+      </div>
+      <div class="card-body">
+        <p><strong style="margin-right: 10px;">{{"status" | translate}}</strong> <p-tag [value]="'orders.'+order.status | translate" [severity]="getSeverity(order.status)"></p-tag></p>
+        <div class="d-flex flex-column gap-2">
+          <p-button [label]="'orders.approveOrder' | translate" severity="success"></p-button>
+          <p-button [label]="'orders.rejectOrder' | translate" severity="danger"></p-button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="card">
+  <div class="card-header">
+    {{"orders.products" | translate}}
+  </div>
+  <div class="card-body">
+    <p-table [value]="order.products" [rowHover]="true" [paginator]="true" [responsive]="true" [rows]="10">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>{{"orders.image" | translate}}</th>
+          <th>{{"name" | translate}}</th>
+          <th>{{"orders.quantity" | translate}}</th>
+          <th>{{"orders.unitPrice" | translate}}</th>
+          <th>{{"orders.totalPrice" | translate}}</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-product>
+        <tr>
+          <td>
+            <p-image [src]="product.imageUrl" alt="Image" width="130" [preview]="true"></p-image>
+          </td>
+          <td>{{ product.name }}</td>
+          <td>{{ product.quantity }}</td>
+          <td>{{ product.unitPrice | currency:'USD' }}</td>
+          <td>{{ product.totalPrice | currency:'USD' }}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>

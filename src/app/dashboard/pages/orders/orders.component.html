@@ -1,0 +1,24 @@
+<p-table [rowHover]="true" [paginator]="true" [rowsPerPageOptions]="[5, 10, 20]" [rows]="5" responsiveLayout="stack" [value]="orders">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>{{"orders.orderId" | translate}}</th>
+            <th>{{"orders.customerName" | translate}}</th>
+            <th>{{"orders.orderDate" | translate}}</th>
+            <th>{{"orders.totalAmount" | translate}}</th>
+            <th>{{"status" | translate}}</th>
+            <th></th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-order>
+        <tr>
+            <td>{{order.id}}</td>
+            <td>{{order.customerName}}</td>
+            <td>{{order.orderDate | date:'dd/MM/yyyy'}}</td>
+            <td>{{order.totalAmount | currency:'USD'}}</td>
+            <td><p-tag [value]="'orders.'+order.status | translate" [severity]="getSeverity(order.status)"></p-tag></td>
+            <td>
+                <p-button [label]="'view' | translate" [routerLink]="'Detail/'+order.id" [raised]="true"></p-button>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>

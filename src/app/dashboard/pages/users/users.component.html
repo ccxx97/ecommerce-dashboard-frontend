@@ -1,0 +1,30 @@
+
+<div class="mb-2" style="float: right;">
+    <button class="primary-button" routerLink="Add">{{'users.addUser1' | translate}}</button>
+    </div>
+    <div style="clear: both;"></div>
+
+<p-table  [loading]="loading" [rowHover]="true" [paginator]="true" [rowsPerPageOptions]="[5, 10, 20]" [rows]="5" responsiveLayout="stack" [value]="users">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>{{'name' | translate}}</th>
+            <th>{{'email' | translate}}</th>
+            <th>{{'createDate' | translate}}</th>
+            <!-- <th>Status</th> -->
+            <th></th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-user>
+        <tr>
+            <td style="max-width: 200px;text-wrap: wrap;">{{user.firstName?user.firstName +' '+ user.lastName:'-'}}</td>
+            <td>{{user.email}}</td>
+            <td>{{user.createDate | date:'short'}}</td>
+            <!-- <td><p-tag [value]="user.isActive == true ? 'Active':'Deactive'" [severity]="getSeverity(user.isActive)"></p-tag></td> -->
+            <td>
+                <!-- <p-button label="View" [routerLink]="'Edit/'+user.id" [raised]="true"></p-button> -->
+                <button (click)="user.role == 1?null:deleteUser(user.id)" [disabled]="user.role == 1" class="primary-button small danger"  style="float: right;">{{'users.deleteUser' | translate}}</button>
+
+            </td>
+        </tr>
+    </ng-template>
+</p-table>

@@ -1,0 +1,19 @@
+<div class="card">
+    <div class="card-body">
+      <form [formGroup]="siteSettingsForm">
+        <div class="form-group">
+          <label for="metaTitle">{{"generalSettings.metaTitle" | translate}}</label>
+          <input type="text" formControlName="metaTitle"  id="metaTitle">
+        </div>
+        <div class="form-group">
+          <label for="metaDescription">{{"generalSettings.metaDescription" | translate}}</label>
+          <textarea  id="metaDescription" formControlName="metaDescription"  style="height: 150px;"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="metaKeywords">{{"generalSettings.metaKeywords" | translate}}</label>
+          <textarea  id="metaKeywords" formControlName="metaKeywords"  style="height: 150px;"></textarea>
+        </div>
+        <button type="button" class="primary-button"  (click)="updateSiteSettings()">{{"saveChanges" | translate}}</button>
+      </form>
+    </div>
+  </div>

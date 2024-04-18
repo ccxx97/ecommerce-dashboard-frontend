@@ -1,0 +1,20 @@
+<div class="dashboard-wrapper">
+    <div class="left-side-menu">
+     <app-left-side-menu></app-left-side-menu>
+    </div>
+    <div class="body-wrapper">
+        <app-header></app-header>
+        <div class="body-content">
+          <p-toast></p-toast>
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              
+              <li class="breadcrumb-item" *ngFor="let item of breadcrumbItems; let last = last;let first = first" [ngClass]="{'active-breadcrumb': last}">
+                <a [routerLink]="'/'+item.link">{{ 'breadcrumb.'+item.label | translate }}</a>
+              </li>
+            </ol>
+          </nav>
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>

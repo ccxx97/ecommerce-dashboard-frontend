@@ -1,0 +1,21 @@
+@use '../../../../../scss/index' as *;
+
+.card {
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
+    border: 1px solid rgb(244, 244, 244);
+    // border: none;
+}
+form {
+    max-width: 800px;
+    padding: 1em .5em;
+}
+a {
+    color: rgb(77, 76, 76) !important;
+}
+.p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {
+border-color: $primary-color;
+color: $primary-color !important;
+}
+.p-tabview .p-tabview-panels {
+    padding: 0 !important;
+}

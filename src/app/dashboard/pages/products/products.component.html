@@ -1,0 +1,44 @@
+<div class="mb-2 mt-2" style="float:right">
+    <button routerLink="Add" class="primary-button ">
+        {{"products.addProduct1" | translate}}
+    </button>
+</div>
+<div style="clear: both;"></div>
+
+
+<p-table [loading]="loading" [rowHover]="true"  [paginator]="true" [rowsPerPageOptions]="[5, 10, 20]" [rows]="5" responsiveLayout="stack" [value]="productList">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>{{"products.name" | translate}}</th>
+            <th>{{"products.image" | translate}}</th>
+            <th>{{"products.price" | translate}}</th>
+            <th>{{"products.reviews" | translate}}</th>
+            <th>{{"products.stock" | translate}}</th>
+            <th>{{"status" | translate}}</th>
+            <th></th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-product>
+        <tr>
+            <td style="max-width: 200px;text-wrap: wrap;">{{product.title}}</td>
+            <td><img [src]="'http://localhost:3000/public/images/'+product.images[0]"
+                    [alt]="product.title" width="100" class="shadow-4" /></td>
+            <td>{{product.price | currency:'USD'}}</td>
+            <td><p-rating [ngModel]="product.rating" [readonly]="true" [cancel]="false"></p-rating></td>
+            <td>{{product.stock}}</td>
+            <td><p-tag [value]="product.inventoryStatus" [severity]="getSeverity(product.isActive)">{{product.isActive == true ? ('active' | translate):('deactive' | translate)}}</p-tag></td>
+            <td>
+                <div class="d-flex gap-2 align-items-center">
+                    <button class="primary-button light" disabled>{{"products.variants" | translate}}</button>
+                    <p-button [label]="'view' | translate" [routerLink]="'Edit/'+product.id" [raised]="true"></p-button>
+                </div>
+            </td>
+        </tr>
+    </ng-template>
+    <!-- <ng-template pTemplate="paginatorleft">
+        <p-button type="button" icon="pi pi-plus" styleClass="p-button-text"></p-button>
+    </ng-template>
+    <ng-template pTemplate="paginatorright">
+        <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button>
+    </ng-template> -->
+</p-table>

@@ -1,0 +1,62 @@
+
+<div class="mb-2 d-flex align-items-center gap-2" style="float: right;">
+  <button class="primary-button light" (click)="updateOrder()"><i class="fa-solid fa-floppy-disk"></i> {{"saveChanges" | translate}}</button>
+  <button class="primary-button" routerLink="Add" (click)="addSliderPopupVisible = true">{{"generalSettings.slider.addImage" | translate}}</button>
+  </div>
+  <div style="clear: both;"></div>
+
+  <p-dialog header="Add Slider Image" [(visible)]="addSliderPopupVisible"  [modal]="true"  [breakpoints]="{ '960px': '75vw' }" [style]="{ width: '50vw' }"  [draggable]="false" [resizable]="false">
+    <form [formGroup]="addSliderForm">
+      <div class="form-group mt-2 mb-2">
+        <label for="">{{"generalSettings.slider.title" | translate}}</label>
+        <input type="text" formControlName="title" placeholder="Title">
+      </div>
+      <div class="form-group mb-3">
+        <label for="">{{"generalSettings.slider.description" | translate}}</label>
+        <input type="text"formControlName="description" placeholder="Title">
+      </div>
+      <div class="form-group mb-3">
+        <label for="">{{"generalSettings.slider.image" | translate}}</label>
+        <img [src]="addSliderForm.controls.image.value?'http://localhost:3000/public/images/'+addSliderForm.controls.image.value:'https://placehold.co/700x300'" style="aspect-ratio: 2/1;" width="100%"  lass="img-thumbnail" alt="...">
+        <div class="file-upload-button mt-2" >
+          <label class="btn btn-primary select-image-button" for="selectSliderImageInput">
+              <i class="fa-solid fa-cloud-arrow-up"></i> {{"browse" | translate}}</label>
+          <input type="file" hidden (change)="onBasicUploadAuto($event)"  id="selectSliderImageInput">
+      </div>
+      </div>
+      <br>
+
+      <button (click)="addImage()" class="primary-button" style="min-width:200px;">{{"generalSettings.slider.addImage" | translate}}</button>
+    </form>  
+  
+  </p-dialog>
+  
+  
+
+  
+<p-table [value]="carouselItems" [rowHover]="true" responsiveLayout="stack">
+    <ng-template pTemplate="header">
+      <tr>
+        <th></th>
+        <th>{{"generalSettings.slider.image" | translate}}</th>
+        <th>{{"generalSettings.slider.title" | translate}}</th>
+        <th>{{"generalSettings.slider.description" | translate}}</th>
+        <th></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-item let-columns="columns" let-index="rowIndex">
+      <tr [pReorderableRow]="index">
+        <td>
+          <span class="pi pi-bars" pReorderableRowHandle></span>
+      </td>
+        <td>
+          <p-image [src]="'http://localhost:3000/public/images/'+item.image" alt="Image" width="130" [preview]="true"></p-image>
+        </td>
+        <td>{{ item.title }}</td>
+        <td>{{ item.description }}</td>
+        <td>
+          <button class="primary-button danger" (click)="deleteSliderImage(item.id)">{{"generalSettings.slider.delete" | translate}}</button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>

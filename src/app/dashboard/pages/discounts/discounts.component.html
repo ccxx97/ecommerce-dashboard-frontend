@@ -1,0 +1,32 @@
+
+<div class="mb-2" style="float: right;">
+<button class="primary-button" routerLink="Add">{{"discount.addDiscount1" | translate}}</button>
+</div>
+<div style="clear: both;"></div>
+
+<p-table [rowHover]="true" [loading]="loading" [paginator]="true" [rowsPerPageOptions]="[5, 10, 20]" [rows]="5" responsiveLayout="stack" [value]="discounts">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>{{"discount.discountCode" | translate}}</th>
+            <th>{{"discount.minPurchaseAmount" | translate}}</th>
+            <th>{{"discount.discountAmount" | translate}}</th>
+            <th>{{"discount.startDate" | translate}}</th>
+            <th>{{"discount.endDate" | translate}}</th>
+            <th>{{"status" | translate}}</th>
+            <th></th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-discount>
+        <tr>
+            <td>{{discount.discountCode}}</td>
+            <td>{{discount.minPurchaseAmount | currency:'USD'}}</td>
+            <td>{{discount.discountAmount | currency:'USD'}}</td>
+            <td>{{discount.startDate | date:'dd/MM/yyyy'}}</td>
+            <td>{{discount.endDate | date:'dd/MM/yyyy'}}</td>
+            <td><p-tag [value]="discount.isActive?('active' | translate):('deactive' | translate)" [severity]="getSeverity(discount.isActive)"></p-tag></td>
+            <td>
+                <p-button [label]="'view' | translate" [routerLink]="'Edit/'+discount.id"   [raised]="true"></p-button>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>

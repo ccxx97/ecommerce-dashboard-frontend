@@ -1,0 +1,86 @@
+@use '../../../../../scss/index' as *;
+
+.col-title {
+    font-size: 1.2rem;
+    font-family: $font-roboto-bold;
+}
+.p-button {
+    padding: .3em 1em !important;
+    margin: .3em;
+    border-radius: 6px;
+    font-size: .95rem;
+    font-family: $font-roboto-regular;
+}
+label {
+    &:not(.select-image-button){
+        font-family: $font-roboto-bold;
+    }
+}
+.card {
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
+    padding: 3em 2em !important;
+    border: 1px solid transparent;
+}
+.save-button,.delete-button {
+    max-width: 150px;  
+    font-size: .95rem;
+}
+.file-upload-button {
+    .select-image-button {
+        cursor: pointer;
+        text-wrap: nowrap;
+        font-size: .95rem;
+    }
+}
+.remove-image-button {
+    font-size: 1.4rem;
+    color: $primary-color;
+    
+    &:hover
+    {
+        color: lighten($color: $primary-color, $amount: 20);
+        
+    }
+}
+
+.current-image-container {
+    .card {
+      padding: 1rem;
+      margin-top: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    }
+  
+    .image-container {
+      position: relative;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid gainsboro;
+      padding-bottom: .8em;
+      display: flex;
+      align-items: center;
+      width: 100%;
+  
+      img {
+        width: 100px;
+        height: auto;
+      }
+  
+    }
+    
+  
+    .title {
+      font-size: 1.25rem;
+      font-family: $font-roboto-bold;
+      margin-bottom: 1rem;
+    }
+  }
+  a {
+    color: rgb(77, 76, 76) !important;
+}
+.p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {
+border-color: $primary-color;
+color: $primary-color !important;
+}
+.p-tabview .p-tabview-panels {
+    padding: 0 !important;
+}

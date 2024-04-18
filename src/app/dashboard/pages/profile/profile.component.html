@@ -1,0 +1,59 @@
+<div class="card">
+
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="row mb-3">
+                    <div class="col-md-6 d-flex flex-column align-items-center">
+                        <label for="image" class="form-label">{{"profile.profileImage" | translate}}</label>
+                        <br>
+                        <img class="profile-img" [src]="userForm.controls.profileImage.value?'http://localhost:3000/public/images/'+userForm.controls.profileImage.value:'../../../../../assets/img/avatar.jpg'" width="120" alt="">
+                        <div class="file-upload-button mt-3">
+                            <label class="btn btn-primary select-image-button" for="selectImageInput">
+                                <i class="fa-solid fa-cloud-arrow-up"></i> {{"browse" | translate}}</label>
+                            <input type="file" (change)="onBasicUploadAuto($event)" hidden id="selectImageInput">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8" [formGroup]="userForm">
+                <div class="row mb-3 flex-column">
+                    <div class="col-md-6">
+                        <label for="firstName" class="form-label">{{"profile.firstName" | translate}}</label>
+                        <input type="text" id="firstName" formControlName="firstName" >
+                    </div>
+                    <div class="col-md-6">
+                        <label for="lastName" class="form-label">{{"profile.lastName" | translate}}</label>
+                        <input type="text" id="lastName" formControlName="lastName">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="phone" class="form-label">{{"profile.phone" | translate}}</label>
+                        <input type="tel" id="phone" formControlName="phone">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="email" class="form-label">{{"profile.email" | translate}}</label>
+                        <input type="email" id="email" readonly formControlName="email">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="d-flex gap-2">
+            <button class="primary-button" (click)="updateProfile()">{{"saveChanges" | translate}}</button>
+            <button class="primary-button light" (click)="changePasswordActive = !changePasswordActive"><i class="fa-solid fa-key"></i> {{"profile.changePassword" | translate}}</button>
+        </div>
+
+
+
+        <div class="change-password mt-4 mb-2" *ngIf="changePasswordActive">
+            <label for="">{{"profile.newPassword" | translate}} *</label>
+            <input type="password" [(ngModel)]="changePasswordForm.newPassword" chan name="" id="">
+            <label for="">{{"profile.newPasswordAgain" | translate}} *</label>
+            <input type="password" [(ngModel)]="changePasswordForm.newPasswordAgain">
+            <button class="primary-button" (click)="changePassword()"><i class="fa-solid fa-floppy-disk"></i> {{"profile.save" | translate}}</button>
+        </div>
+
+    </div>
+
+</div>

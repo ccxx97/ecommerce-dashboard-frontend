@@ -1,0 +1,26 @@
+@use '../../../../scss/index' as *;
+
+.page-title {
+    font-size: 1.4rem !important;
+    font-family: $font-roboto-bold;
+    margin-bottom: 1em;
+}
+
+.btn-primary-opacity {
+    background-color: $primary-color-opacity;
+    color: $primary-color;
+    border: 1px solid $primary-color;
+    font-family: $font-roboto-regular;
+    font-size: .95rem;
+    &:focus {
+        background-color: $primary-color !important;
+        color: #ffff;
+        outline: 4px solid $primary-color-opacity !important;
+    }
+}
+.p-button {
+    padding: .3em 1em !important;
+    border-radius: 6px;
+    font-size: .95rem;
+    font-family: $font-roboto-regular;
+}

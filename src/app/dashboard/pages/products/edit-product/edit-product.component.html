@@ -1,0 +1,71 @@
+<p-tabView>
+  <p-tabPanel [header]="'products.addProduct.productDetails' | translate">
+    <div  class="card p-2 gap-2" [formGroup]="addProductForm">
+        <label for="">{{"products.addproduct.productName" | translate}}</label>
+        <input type="text" formControlName="title" />
+        <label for="">{{"products.addproduct.productDescription" | translate}}</label>
+        <ckeditor [editor]="Editor" formControlName="description" data=""></ckeditor>
+        <label for="">{{"products.addproduct.productPrice" | translate}}</label>
+        <input type="text" formControlName="price">
+        <label for="">{{"products.addproduct.productDiscountPrice" | translate}}</label>
+        <input type="text" formControlName="discountedPrice">
+        <label for="">{{"products.addproduct.productStock" | translate}}</label>
+        <input type="number" formControlName="stock">
+        <label for="">{{"products.addproduct.productStatus" | translate}}</label>
+        <select formControlName="isActive">
+            <option [ngValue]="true">{{"active" | translate}}</option>
+            <option [ngValue]="false">{{"deactive" | translate}}</option>
+        </select>
+      <div class="d-flex align-items-center gap-1 mt-4">
+        <button (click)="updateProduct(addProductForm.value)" class="primary-button save-button" >
+          <i class="fa-solid fa-floppy-disk"></i>
+          {{"saveChanges" | translate}}
+      </button>
+      <button class="primary-button danger" style="margin-left: auto;"  (click)="deleteProduct()">{{"products.editProduct.deleteProduct" | translate}}</button>
+      </div>
+
+  </div>
+  </p-tabPanel>
+  <p-tabPanel [header]="'products.addProduct.productImages' | translate">
+    <div class="card p-2">
+
+
+      <p-fileUpload name="images[]"  #fileUpload [mode]="'advanced'" [chooseLabel]="'products.addproduct.selectImage' | translate"   label [customUpload]="true"  (uploadHandler)="onUpload($event,fileUpload)"  [multiple]="true" accept="image/*" [maxFileSize]="1000000">
+          <ng-template pTemplate="content">
+            <div class="current-image-container">
+              <div class="card p-2 mt-3">
+                <div *ngFor="let url of previewUrls; let i = index" class="image-container">
+                  <p-image [src]="url" alt="Image" width="120" [preview]="true"></p-image>
+                  <button class="primary-button danger delete-button" style="margin-left:auto" (click)="deleteImage(i)">
+                    <i class="fa-solid fa-xmark"></i> {{"products.editProduct.delete" | translate}}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+        </p-fileUpload>
+  </div>
+  </p-tabPanel>
+  <p-tabPanel [header]="'products.reviews2' | translate">
+    <p-table  [loading]="loading" [rowHover]="true" [paginator]="true" [rowsPerPageOptions]="[5, 10, 20]" [rows]="5" responsiveLayout="stack" [value]="comments">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>{{"products.editProduct.comment" | translate}}</th>
+          <th>{{"products.editProduct.rating" | translate}}</th>
+          <th>{{"products.editProduct.createDate" | translate}}</th>
+          <th></th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-comment>
+        <tr>
+          <td>{{ comment.text }}</td>
+          <td><p-rating [ngModel]="comment.rating" [readonly]="true" [cancel]="false"></p-rating></td>
+          <td>{{ comment.createdAt | date:'short' }}</td>
+          <td><button class="primary-button danger" (click)="deleteProductComment(comment.id)">{{"products.editProduct.delete" | translate}}</button></td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </p-tabPanel>
+  <p-tabPanel [header]="'products.addProduct.seo' | translate" [disabled]="true"></p-tabPanel>
+</p-tabView>    
+    

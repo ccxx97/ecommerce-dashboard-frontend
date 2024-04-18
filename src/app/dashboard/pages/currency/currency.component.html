@@ -1,0 +1,28 @@
+<div class="mb-2" style="float: right;">
+    <button class="primary-button" routerLink="Add">{{"currency.addCurrency1" | translate}}</button>
+    </div>
+    <div style="clear: both;"></div>
+
+
+<p-table [value]="currencies" [loading]="loading">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>{{"id" | translate}}</th>
+        <th>{{"name" | translate}}</th>
+        <th>{{"code" | translate}}</th>
+        <th>{{"symbol" | translate}}</th>
+        <th></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-currency>
+      <tr>
+        <td>{{ currency.id }}</td>
+        <td>{{ currency.name }}</td>
+        <td>{{ currency.code }}</td>
+        <td>{{ currency.symbol }}</td>
+        <td>
+            <p-button [label]="'view' | translate" [routerLink]="'Edit/'+currency.code"   [raised]="true"></p-button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>

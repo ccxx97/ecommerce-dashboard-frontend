@@ -1,0 +1,41 @@
+<div class="left-side-mobile-backdrop"></div>
+
+<div class="left-side-menu">
+    <div class="menu-head">
+        <span class="icon">
+            <img src="https://clipart-library.com/images_k/transparent-png-online/transparent-png-online-10.png" alt="">
+        </span>
+        <span>Dashboard</span>
+    </div>
+    <!-- <hr style="width: 85%;margin: 0 auto;"> -->
+
+    <div class="d-flex flex-column flex-shrink-0 p-3">
+      <ul class="nav nav-pills flex-column gap-3 mb-auto">
+        <li class="nav-item" *ngFor="let menuItem of menuItems">
+          @if (menuItem.label) {
+            <div style="cursor: pointer;" (click)="menuItem.openedChildren = !menuItem.openedChildren" class="d-flex align-items-center">
+              <label for="" class="menu-label">
+                {{ 'menuLinks.'+menuItem.text | translate }}
+              </label>
+              <span  style="margin-left: auto;"  *ngIf="menuItem.isActive"><i class="fa-solid fa-lg fa-caret-down"></i></span>
+            </div>
+            <ng-container *ngIf="menuItem.children && menuItem.openedChildren">
+              <ng-container *ngFor="let menuSubItem of menuItem.children">
+                <a [routerLink]="menuSubItem.link"   routerLinkActive="active"  [routerLinkActiveOptions]="{ exact: menuSubItem.exact}"  class="nav-link mb-2 mt-2"  aria-current="page">
+                  <i [class]="'fa-solid ' + menuSubItem.icon"></i>
+                  {{ 'menuLinks.'+menuSubItem.text | translate }}
+                </a>
+              </ng-container>
+            </ng-container>
+          }
+          @else {
+            <a [routerLink]="menuItem.link"  routerLinkActive="active"  [routerLinkActiveOptions]="{ exact: menuItem.exact}"  class="nav-link"  aria-current="page">
+              <i [class]="'fa-solid ' + menuItem.icon"></i>
+              {{ 'menuLinks.'+menuItem.text | translate }}
+            </a>
+          }
+        </li>
+      </ul>
+    </div>
+    
+</div>

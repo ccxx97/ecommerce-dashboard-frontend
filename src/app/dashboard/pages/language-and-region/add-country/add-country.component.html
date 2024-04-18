@@ -1,0 +1,36 @@
+<div class="card">
+    <form [formGroup]="countryForm">
+        <div class="mb-3">
+          <label for="languageSelect" class="form-label">{{"country.selectLanguage" | translate}} <p-tag severity="info"><i class="fa-solid fa-circle-info "></i> <span style="padding-left: 5px;">{{'country.infoMessage' | translate}}</span></p-tag></label>
+          <select  id="languageSelect" formControlName="languageId" name="languageSelect" required>
+            <option *ngFor="let language of languages" [value]="language.id">{{ language.name }}</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="countrySelect" class="form-label">{{"country" | translate}}</label>
+          <select  id="countrySelect" formControlName="code" (change)="countryChange($event)"  name="countrySelect" required>
+            <option *ngFor="let country of countries" [value]="country.cca2">{{ country.name.common }}</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label  class="form-label">{{"timezone" | translate}}</label>
+          <select  formControlName="timezoneId"  required>
+            <option *ngFor="let timezone of timezones" [value]="timezone.id">{{ timezone.offset }}</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label  class="form-label">{{"country.currencyCode" | translate}}</label>
+          <select  id="currencySelect" formControlName="currencyId"  name="currencySelect" required>
+            <option *ngFor="let currency of currencies" [value]="currency.id">{{ currency.name }}</option>
+          </select>
+        </div>
+        @if (updateMode) {
+          <button type="button" (click)="updateCountry()" class="primary-button">{{"country.updateCountry" | translate}}</button>
+          <button (click)="deleteCountry()" class="primary-button small danger"  style="float: right;">{{"country.deleteCountry" | translate}} </button>
+        }
+        @else {
+          <button type="button" (click)="addCountry()" class="primary-button">{{"country.addCountry" | translate}}</button>
+
+        }
+      </form>
+</div>

@@ -1,0 +1,22 @@
+<div class="card">
+    <div class="card-body">
+        <form [formGroup]="timezoneForm">
+            <div class="mb-3">
+              <label for="name" class="form-label"> {{'timezone.name' | translate}}</label>
+              <input type="text" formControlName="name" id="name" [placeholder]="'enterName' | translate">
+            </div>
+            <div class="mb-3">
+              <label for="offset" class="form-label">{{'timezone.offset' | translate}}</label>
+              <input type="text" formControlName="offset" [readOnly]="updateMode" id="offset" [placeholder]="'timezone.enterOffset' | translate">
+            </div>
+            @if (updateMode) {
+              <button type="button" (click)="updateTimezone()" class="primary-button">{{'timezone.updateTimezone' | translate}}</button>
+              <button (click)="deleteTimezone()" class="primary-button small danger"  style="float: right;">{{'timezone.deleteTimezone' | translate}} </button>
+            }
+            @else {
+              <button type="button" (click)="addTimezone()" class="primary-button">{{'timezone.addTimezone' | translate}}</button>
+    
+            }
+          </form>
+    </div>
+</div>

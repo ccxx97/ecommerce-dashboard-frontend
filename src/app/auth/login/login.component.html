@@ -1,0 +1,34 @@
+<p-toast></p-toast>
+
+<div class="card-wrapper">
+    <div class="login-card">
+        <div class="form">
+            <span class="title text-center">
+                <span class="bold">Welcome</span>
+                <br>
+                <span style="font-size: .85rem;">You can log in to the Ecommerce administration panel</span>
+            </span>
+            <br>
+            <p-avatar icon="pi pi-user" shape="circle" styleClass="mr-2"  size="xlarge"></p-avatar>
+            
+            <div class="form-group">
+                <label for="">Email</label>
+                <input type="text" [(ngModel)]="loginForm.email">
+            </div>
+            <div class="form-group">
+                <label for="">Password</label>
+                <input type="password" [(ngModel)]="loginForm.password">
+            </div>
+            <button class="primary-button" (click)="login()">
+            @if (loading) {
+                <div class="spinner-border spinner-border-sm" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                  </div>
+            }
+            @else {
+                Login
+            }
+            </button>
+        </div>
+    </div>
+</div>

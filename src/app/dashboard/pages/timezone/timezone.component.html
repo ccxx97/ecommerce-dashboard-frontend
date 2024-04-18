@@ -1,0 +1,27 @@
+
+<div class="mb-2" style="float: right;">
+    <button class="primary-button" routerLink="Add">{{'timezone.addTimezone1' | translate}}</button>
+    </div>
+    <div style="clear: both;"></div>
+    
+
+<p-table [value]="timezones" [loading]="loading">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>{{'id' | translate}}</th>
+        <th>{{'name' | translate}}</th>
+        <th>{{'timezone.offset' | translate}}</th>
+        <th></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-timezone>
+      <tr>
+        <td>{{ timezone.id }}</td>
+        <td>{{ timezone.name }}</td>
+        <td>{{ timezone.offset }}</td>
+        <td>
+            <p-button [label]="'view' | translate" [routerLink]="'Edit/'+timezone.id"   [raised]="true"></p-button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
